@@ -7,17 +7,13 @@ conda create -n py37 python=3.7
 conda activate py37
 
 # 라이브러리 설치
-conda install -c conda-forge gym
-conda install -c cogsci pygame
-pip install gym[all]
+pip install gym
+pip install pygame
 
 
-
-
-
-
+# 아나콘다 명령어 모음
 conda info --envs
-conda env remove -n py36
-conda create -n py36 python=3.6
-conda activate py36
+conda env remove -n py37
+conda create -n py37 python=3.7
+conda activate py37
 conda deactivate
