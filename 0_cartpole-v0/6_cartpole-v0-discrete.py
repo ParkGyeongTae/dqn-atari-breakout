@@ -1,9 +1,12 @@
-# python 3.7
+from gym import spaces
 
-# 에피소드가 종료되는 조건
-# 막대기 각도 : -12도 ~ +12도
-# 카트의 위치 : -2.4 ~ +2.4
-# 시간 > 200
+space = spaces.Discrete(8)
+x = space.sample()
+
+print(space.contains(x))
+print(space.n == 8)
+
+'''
 
 from gym import spaces
 
@@ -13,3 +16,5 @@ x = space.sample()
 
 print(space.contains(x))
 print(space.n == 8)
+
+'''
