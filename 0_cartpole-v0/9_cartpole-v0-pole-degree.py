@@ -33,6 +33,7 @@ observation = env.reset()
 # 100 timestep
 for i in range(100):
 
+    # GUI로 현재 진행상황을 출력
     env.render()
     
     # 막대가 오른쪽으로 기울었으면

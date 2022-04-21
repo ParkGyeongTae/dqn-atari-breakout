@@ -31,6 +31,7 @@ env.reset()
 # 10 timestep을 실행
 for i in range(10):
 
+    # GUI로 현재 진행상황을 출력
     env.render()
     
     # 카트를 왼쪽으로만 밀었을 때
