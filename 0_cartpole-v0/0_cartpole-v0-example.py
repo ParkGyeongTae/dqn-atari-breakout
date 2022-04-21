@@ -13,8 +13,6 @@ env.close()
 
 '''
 
-< 코드 설명 >
-
 import gym
 env = gym.make('CartPole-v0')
 
