@@ -1,28 +1,54 @@
-# python 3.7
+import gym
 
-# 에피소드가 종료되는 조건
-# 막대기 각도 : -12도 ~ +12도
-# 카트의 위치 : -2.4 ~ +2.4
-# 시간 > 200
+env = gym.make('CartPole-v0')
+
+for episode in range(5):
+
+  observation = env.reset()
+
+  for t in range(100):
+
+      env.render()
+
+      print(observation)
+
+      action = env.action_space.sample()
+      observation, reward, done, info = env.step(action)
+
+      if done:
+
+          print('Max Timestep :', t + 1)
+          break
+
+env.close()
+
+
+
+'''
 
 import gym
 
 env = gym.make('CartPole-v0')
 
-# 20번의 에피소드를 진행
-for i_episode in range(20):
+# 5번의 에피소드를 진행
+for episode in range(5):
+
   observation = env.reset()
 
-  # 각 에피소드마다 100시간을 진행
+  # 각 에피소드마다 100번의 timestep을 진행
   for t in range(100):
 
       env.render()
+
       print(observation)
+
       action = env.action_space.sample()
       observation, reward, done, info = env.step(action)
 
+      # 실패하면 종료
       if done:
-          print('Episode finished after {} timesteps'.format(t+1))
+
+          print('Max Timestep :', t + 1)
           break
 
 env.close()
@@ -40,4 +66,6 @@ env.close()
 # [-0.0332348  -1.0249789   0.11732178  1.6383808 ]
 # [-0.05373437 -0.8314116   0.1500894   1.3844393 ]
 # [-0.07036261 -1.0280526   0.17777818  1.7200456 ]
-# Episode finished after 12 timesteps
+# Max Timestep :  12
+
+'''

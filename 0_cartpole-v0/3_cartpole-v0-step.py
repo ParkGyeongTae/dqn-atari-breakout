@@ -30,7 +30,7 @@ print('action            : ', action)
 print('step              : ', step)
 
 # 결과
-# first_observation :  [ 0.03486872  0.04418433 -0.00933439  0.02904002]
+# first_observation :  [0.03486872  0.04418433 -0.00933439  0.02904002]
 # action            :  0
 # step              :  (array([ 0.0357524 , -0.15080252, -0.00875359,  0.3187633 ], dtype=float32), 1.0, False, {})
 
