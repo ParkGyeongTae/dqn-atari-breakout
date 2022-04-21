@@ -8,12 +8,13 @@
 import gym
 
 env = gym.make('CartPole-v0')
-
-# 첫 관찰값
 observation = env.reset()
 
-print(observation)
+# 게임 환경에서 선택할 수 있는 행동
+action = env.action_space.sample()
+
+print(action)
 
 # 결과
-# [카트의 위치, 카트의 속도, 막대기의 각도, 막대기의 회전율]
-# [-0.0497234  -0.03475072  0.04795611  0.04663042]
+# 0 or 1
+# 0 또는 1을 출력
