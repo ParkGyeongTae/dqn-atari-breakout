@@ -1,6 +1,6 @@
 import gym
 
-env = gym.make('CartPole-v0')
+env = gym.make('CartPole-v1')
 
 print('action_space           : ', env.action_space)
 print('observation_space      : ', env.observation_space)
@@ -12,7 +12,7 @@ print('observation_space.low  : ', env.observation_space.low)
 
 import gym
 
-env = gym.make('CartPole-v0')
+env = gym.make('CartPole-v1')
 
 # 행동 공간
 print('action_space           : ', env.action_space)
