@@ -1,29 +1,32 @@
 import gym
 
-env = gym.make('CartPole-v0')
+env = gym.make('CartPole-v1')
+
+max_time_step = 10
+action        = 0
+# action        = 1
 
 env.reset()
 
-for i in range(10):
+for time_step in range(max_time_step):
 
     env.render()
 
-    observation, reward, done, info = env.step(0)
-    # observation, reward, done, info = env.step(1)
+    observation, reward, done, info = env.step(action)
 
     print(observation, done)
 
     if done:
+        print("Max Time Step : ", time_step + 1)
         break
 
 env.close()
-
 
 '''
 
 import gym
 
-env = gym.make('CartPole-v0')
+env = gym.make('CartPole-v1')
 
 # 에피소드 실행
 env.reset()
