@@ -1,20 +1,21 @@
 import gym
 
-env = gym.make('CartPole-v0')
+env = gym.make('CartPole-v1')
+
 observation = env.reset()
-print(observation)
+print("1 :", observation)
 
 observation, reward, done, info = env.step(0)
-print(observation)
+# observation, reward, done, info = env.step(1)
+print("2 :", observation)
 
 env.close()
-
 
 '''
 
 import gym
 
-env = gym.make('CartPole-v0')
+env = gym.make('CartPole-v1')
 
 # 에피소드 실행
 observation = env.reset()
