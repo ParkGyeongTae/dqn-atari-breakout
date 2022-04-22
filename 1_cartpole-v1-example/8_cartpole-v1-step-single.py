@@ -17,7 +17,7 @@ for time_step in range(max_time_step):
     print(observation, done)
 
     if done:
-        print("Max Time Step : ", time_step + 1)
+        print("Max Time Step :", time_step + 1)
         break
 
 env.close()
