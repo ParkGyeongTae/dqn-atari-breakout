@@ -1,20 +1,20 @@
 import gym
 
-env = gym.make('CartPole-v0')
+env = gym.make('CartPole-v1')
 
-first_observation = env.reset()
+observation = env.reset()
 action = env.action_space.sample()
 step = env.step(action)
 
-print('first_observation : ', first_observation)
-print('action            : ', action)
-print('step              : ', step)
+print('observation : ', observation)
+print('action      : ', action)
+print('step        : ', step)
 
 '''
 
 import gym
 
-env = gym.make('CartPole-v0')
+env = gym.make('CartPole-v1')
 
 # 에피소드 시작
 observation = env.reset()
