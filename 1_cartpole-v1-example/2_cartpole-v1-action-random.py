@@ -1,11 +1,14 @@
 import gym
+import random
 
 env = gym.make('CartPole-v1')
 
 env.reset()
 action = env.action_space.sample()
+# random_action = random.randrange(0, 2)
 
 print(action)
+# print(random_action)
 
 '''
 
