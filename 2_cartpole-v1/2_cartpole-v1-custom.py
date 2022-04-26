@@ -27,7 +27,7 @@ def data_preparation(play_numbers, choise_numbers, f, render = False):
       score += reward
 
       if done:
-        print(score)
+        # print(score)
         break
 
     game_data.append((score, game_steps))
@@ -69,8 +69,7 @@ def train_model(model, training_set):
 
 if __name__ == '__main__':
 
-  # play_numbers   = 100
-  play_numbers   = 10000
+  play_numbers   = 100
   choise_numbers = 50
 
   model = build_model()
