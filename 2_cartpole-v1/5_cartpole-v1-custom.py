@@ -1,8 +1,8 @@
 from keras.models                import Sequential
 from keras.layers                import Dense
 from tensorflow.keras.optimizers import Adam
-import gym
 import numpy as np
+import gym
 import random
 
 env = gym.make('CartPole-v1')

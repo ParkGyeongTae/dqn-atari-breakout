@@ -16,6 +16,8 @@ pip install gym==0.23.1
 pip install pygame==2.1.2
 pip install tensorflow==2.8.0
 pip install keras==2.8.0
+pip install torch==1.11.0
+pip install matplotlib==3.5.1
 
 ### Step 4) 파일 실행
 
