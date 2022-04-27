@@ -13,8 +13,6 @@ for i in range(max_time_step):
 
   observation, reward, done, info = env.step(random.randrange(0, 2))
 
-  # print(info)
-
   if done:
     break
 
