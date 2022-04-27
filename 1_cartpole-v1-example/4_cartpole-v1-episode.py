@@ -4,7 +4,7 @@ import gym
 env = gym.make('CartPole-v1')
 
 episode_number  = 3
-timestep_number = 100
+timestep_number = 5
 
 for episode in range(episode_number):
 

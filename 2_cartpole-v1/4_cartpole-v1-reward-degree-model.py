@@ -23,17 +23,13 @@ class DQNAgent:
   def __init__(self):
 
     self.model = nn.Sequential(
-      nn.Linear(4, 128),
+      nn.Linear(4, 64),
       nn.ReLU(),
-      # nn.Linear(128,256),
-      # nn.ReLU(),
-      # nn.Linear(256,512),
-      # nn.ReLU(),
-      # nn.Linear(512,256),
-      # nn.ReLU(),
-      # nn.Linear(256,128),
-      # nn.ReLU(),
-      nn.Linear(128, 2)
+      nn.Linear(64,128),
+      nn.ReLU(),
+      nn.Linear(128,64),
+      nn.ReLU(),
+      nn.Linear(64, 2)
       )
 
     self.optimizer = optim.Adam(self.model.parameters(), LR)
@@ -57,6 +53,7 @@ class DQNAgent:
   
 
   def learn(self):
+
     if len(self.memory) < BATCH_SIZE:
       return
 
@@ -66,9 +63,11 @@ class DQNAgent:
     actions = torch.cat(actions)
     rewards = torch.cat(rewards)
     next_states = torch.cat(next_states)
+    
     current_q = self.model(states).gather(1, actions)
     max_next_q = self.model(next_states).detach().max(1)[0]
     expected_q = rewards + (GAMMA * max_next_q)
+
     loss = F.mse_loss(current_q.squeeze(), expected_q)
     self.optimizer.zero_grad()
     loss.backward()
@@ -78,23 +77,30 @@ env = gym.make('CartPole-v1')
 agent = DQNAgent()
 score_history = [] 
 
-for e in range(1, EPISODES+1):
+for e in range(1, EPISODES + 1):
+
   state = env.reset()
   steps = 0
+
   while True:
+
     state = torch.FloatTensor([state]) 
     action = agent.act(state) 
     next_state, reward, done, _ = env.step(action.item())
+
     if done:
       reward = -1
     agent.memorize(state, action, reward, next_state) 
     agent.learn()
     state = next_state
     steps += 1
+
     if done:
       print("Eposide:{0} Score: {1}".format(e, steps))
       score_history.append(steps) 
       break
+
+torch.save(agent.model, 'model.pt')
 
 plt.plot(score_history)
 plt.ylabel('score')
