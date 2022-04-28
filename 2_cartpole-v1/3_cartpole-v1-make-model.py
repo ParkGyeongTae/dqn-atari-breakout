@@ -9,7 +9,7 @@ from collections import deque
 import matplotlib.pyplot as plt
 
 # 하이퍼 파라미터 정의
-EPISODES = 500
+EPISODES = 50
 
 EPS_START = 0.9
 EPS_END = 0.05
