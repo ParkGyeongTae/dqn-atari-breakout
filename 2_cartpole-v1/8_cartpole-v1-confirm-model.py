@@ -86,6 +86,13 @@ class DQNAgent:
     else:
       return torch.LongTensor([[random.randrange(2)]])
 
+    '''
+    만약, 0~1 랜덤한 숫자가 eps_threshold 보다 크면
+    모델을 적용하고,
+    그게 아니면,
+    0과 1 랜덤한 숫자를 적용
+    '''
+
   def learn(self):
 
     if len(self.memory) < BATCH_SIZE:
