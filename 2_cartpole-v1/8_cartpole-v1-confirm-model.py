@@ -74,7 +74,13 @@ class DQNAgent:
   def act(self, state):
 
     eps_threshold = EPS_END + (EPS_START - EPS_END) * math.exp(-1. * self.steps_done / EPS_DECAY)
+
+    ''' timestep을 거듭할수록 0.9 부터 내려감 (같은 숫자로 감소) '''
+
     self.steps_done += 1
+
+    ''' timestep을 거듭할수록 1부터 올라감 (1씩 증가) '''
+
     if random.random() > eps_threshold:
       return self.model(state).data.max(1)[1].view(1, 1)
     else:
