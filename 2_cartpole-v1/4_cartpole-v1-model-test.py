@@ -8,7 +8,6 @@ model = torch.load('model.pt')
 
 max_time_step   = 500
 episode_numbers = 50
-random_action   = random.randrange(0, 2)
 
 for episode in range(episode_numbers):
 
@@ -17,7 +16,7 @@ for episode in range(episode_numbers):
 
   for time_step in range(max_time_step):
 
-    env.render()
+    # env.render()
 
     q_value = model(torch.FloatTensor([observation]))
 

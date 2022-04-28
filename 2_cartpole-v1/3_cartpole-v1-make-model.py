@@ -9,15 +9,15 @@ from collections import deque
 import matplotlib.pyplot as plt
 
 # 하이퍼 파라미터 정의
-EPISODES = 50
+EPISODES = 200
 
-EPS_START = 0.95
+EPS_START = 0.99
 EPS_END = 0.01
 EPS_DECAY = 200
 
 GAMMA = 0.8
 LR = 0.001
-BATCH_SIZE = 32
+BATCH_SIZE = 16
 
 class DQNAgent:
 
@@ -26,10 +26,10 @@ class DQNAgent:
     self.model = nn.Sequential(
       nn.Linear(4, 128),
       nn.ReLU(),
-      nn.Linear(128,256),
-      nn.ReLU(),
-      nn.Linear(256,128),
-      nn.ReLU(),
+      # nn.Linear(128,256),
+      # nn.ReLU(),
+      # nn.Linear(256,128),
+      # nn.ReLU(),
       nn.Linear(128, 2)
       )
 
