@@ -1,10 +1,13 @@
-import gym 
-import random 
-import math 
+import gym
+import random
+import math
+import numpy as np
+
 import torch
 import torch.nn as nn
-import torch.optim as optim
 import torch.nn.functional as F
+import torch.optim as optim
+
 from collections import deque
 import matplotlib.pyplot as plt
 
@@ -66,8 +69,8 @@ class DQNAgent:
       (
         state,
         action,
-        torch.FloatTensor([reward]),
-        torch.FloatTensor([next_state])
+        torch.FloatTensor(np.array(reward, ndmin = 1)),
+        torch.FloatTensor(np.array(next_state, ndmin = 2))
       )
     )
 
@@ -115,34 +118,44 @@ class DQNAgent:
     self.optimizer.step()
 
 env = gym.make('CartPole-v1')
+
 agent = DQNAgent()
-score_history = [] 
+score_history = []
 
 for e in range(1, EPISODES + 1):
 
   state = env.reset()
   steps = 0
 
-  while True:
+  '''
+  게임 초기화
+  '''
 
-    state = torch.FloatTensor([state])
+  while True:
+    state = torch.FloatTensor(np.array(state, ndmin = 2))
     action = agent.act(state)
     next_state, reward, done, info = env.step(action.item())
 
     if done:
       reward = -1
-    agent.memorize(state, action, reward, next_state) 
+
+    agent.memorize(state, action, reward, next_state)
     agent.learn()
     state = next_state
     steps += 1
 
     if done:
       print("Eposide:{0} Score: {1}".format(e, steps))
-      score_history.append(steps) 
+      score_history.append(steps)
       break
 
-# torch.save(agent.model, 'model.pt')
+    '''
+    에피소드가 끝나면,
+    에피소드 번호, 에피소드 점수를 출력하고,
+    score_history 리스트에 steps를 추가
+    '''
 
+# torch.save(agent.model, 'model.pt')
 # plt.plot(score_history)
 # plt.ylabel('score')
 # plt.show()
