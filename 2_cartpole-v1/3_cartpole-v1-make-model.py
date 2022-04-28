@@ -9,13 +9,14 @@ from collections import deque
 import matplotlib.pyplot as plt
 
 # 하이퍼 파라미터 정의
-EPISODES = 100
+EPISODES = 500
 
 EPS_START = 0.9
 EPS_END = 0.05
 EPS_DECAY = 200
 
 GAMMA = 0.8
+
 LR = 0.001
 BATCH_SIZE = 32
 
@@ -38,12 +39,14 @@ class DQNAgent:
     self.memory = deque(maxlen = 10000)
 
   def memorize(self, state, action, reward, next_state):
+
     self.memory.append((state,
                       action,
                       torch.FloatTensor([reward]),
                       torch.FloatTensor([next_state])))
 
   def act(self, state):
+
     eps_threshold = EPS_END + (EPS_START - EPS_END) * math.exp(-1. * self.steps_done / EPS_DECAY)
     self.steps_done += 1
     if random.random() > eps_threshold:
