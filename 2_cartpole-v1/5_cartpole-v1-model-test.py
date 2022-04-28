@@ -17,7 +17,7 @@ for episode in range(episode_numbers):
 
   for time_step in range(max_time_step):
 
-    env.render()
+    # env.render()
 
     q_value = model(torch.FloatTensor([observation]))
 

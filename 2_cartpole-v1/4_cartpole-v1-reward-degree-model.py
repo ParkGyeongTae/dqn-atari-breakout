@@ -8,10 +8,10 @@ import torch.nn.functional as F
 from collections import deque
 import matplotlib.pyplot as plt
 
-EPISODES = 100
+EPISODES = 50
 
-EPS_START = 0.9
-EPS_END = 0.05
+EPS_START = 0.95
+EPS_END = 0.01
 EPS_DECAY = 200
 
 GAMMA = 0.8
@@ -23,13 +23,13 @@ class DQNAgent:
   def __init__(self):
 
     self.model = nn.Sequential(
-      nn.Linear(4, 64),
+      nn.Linear(4, 128),
       nn.ReLU(),
-      nn.Linear(64,128),
+      nn.Linear(128,256),
       nn.ReLU(),
-      nn.Linear(128,64),
+      nn.Linear(256,128),
       nn.ReLU(),
-      nn.Linear(64, 2)
+      nn.Linear(128, 2)
       )
 
     self.optimizer = optim.Adam(self.model.parameters(), LR)
