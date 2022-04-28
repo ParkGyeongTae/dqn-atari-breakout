@@ -1,40 +1,10 @@
 from keras.models                import Sequential
 from keras.layers                import Dense
 from tensorflow.keras.optimizers import Adam
-import numpy as np
 
 import gym
 import random
-
-# max_time_step   = 100
-# episode_numbers = 5
-
-# for episode in range(episode_numbers):
-
-#   observation = env.reset()
-#   rewards = 0
-
-#   for time_step in range(max_time_step):
-
-#     env.render()
-
-#     if observation[2] > 0:
-#       action = 1
-#     elif observation[2] < 0:
-#       action = 0
-#     else:
-#       action = random.randrange(0, 2)
-
-#     observation, reward, done, info = env.step(action)
-
-#     rewards += reward
-
-#     if done:
-#       print("episode :", episode + 1, ", rewards :", rewards)
-#       break
-
-# env.close()
-
+import numpy as np
 
 def data_preparation(episode_numbers, choise_numbers, f, render = False):
   game_data = []
@@ -79,22 +49,20 @@ def data_preparation(episode_numbers, choise_numbers, f, render = False):
 
 # 모델 구축
 def build_model():
-
   model = Sequential()
   model.add(Dense(128, input_dim = 4, activation = 'relu'))
   model.add(Dense(52, activation = 'relu'))
   model.add(Dense(2, activation = 'softmax'))
   model.compile(loss='mse', optimizer = Adam())
-
   return model
 
 # 모델 학습
 def train_model(model, training_set):
-
   X = np.array([i[0] for i in training_set]).reshape(-1, 4)
   y = np.array([i[1] for i in training_set]).reshape(-1, 2)
   model.fit(X, y, epochs = epochs_numbers)
 
+# 예측
 def predictor(s):
   return np.random.choice([0, 1], p = model.predict(s.reshape(-1, 4))[0])
 
@@ -105,9 +73,10 @@ episode_numbers = 1000
 choise_numbers  = 50
 max_time_step   = 200
 epochs_numbers  = 100
+random_action   = lambda s: random.randrange(0, 2)
 
 model = build_model()
-training_data = data_preparation(episode_numbers, choise_numbers, lambda random_action: random.randrange(0, 2))
+training_data = data_preparation(episode_numbers, choise_numbers, random_action, False)
 train_model(model, training_data)
 
-data_preparation(10, 1, predictor, True)
+data_preparation(10, 1, predictor, False)
