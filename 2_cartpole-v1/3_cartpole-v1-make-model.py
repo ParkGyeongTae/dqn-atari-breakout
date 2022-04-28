@@ -8,6 +8,7 @@ import torch.nn.functional as F
 from collections import deque
 import matplotlib.pyplot as plt
 
+# 하이퍼 파라미터 정의
 EPISODES = 50
 
 EPS_START = 0.95
@@ -49,8 +50,6 @@ class DQNAgent:
       return self.model(state).data.max(1)[1].view(1, 1)
     else:
       return torch.LongTensor([[random.randrange(2)]])
-
-  
 
   def learn(self):
 
