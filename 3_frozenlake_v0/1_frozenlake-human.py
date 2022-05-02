@@ -51,6 +51,7 @@ while True:
 
     action = arrow_keys[key]
     state, reward, done, info = env.step(action)
+    env.render()
 
     print("State :", state, "Action :", action, "Reward :", reward, "Info :", info)
 
