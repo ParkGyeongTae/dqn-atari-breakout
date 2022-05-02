@@ -25,15 +25,20 @@ arrow_keys = {
     '\x1b[B' : DOWN,
     '\x1b[C' : RIGHT,
     '\x1b[D' : LEFT
-}
+    }
 
 register(
     id = 'FrozenLake-v3',
     entry_point = 'gym.envs.toy_text:FrozenLakeEnv',
-    kwargs = {'map_name': '4x4', 'is_slippery': False}
-)
+    kwargs = {
+        'map_name': '4x4', 
+        'is_slippery': False
+        }
+    )
 
 env = gym.make('FrozenLake-v3')
+
+env.reset()
 env.render()
 
 while True:
