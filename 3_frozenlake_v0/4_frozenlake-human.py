@@ -15,10 +15,10 @@ class _Getch:
 
 inkey = _Getch()
 
-LEFT = 0
-DOWN = 1
+LEFT  = 0
+DOWN  = 1
 RIGHT = 2
-UP = 3
+UP    = 3
 
 arrow_keys = {
     '\x1b[A' : UP,
