@@ -9,11 +9,12 @@ from collections import deque
 import matplotlib.pyplot as plt
 
 # 하이퍼 파라미터 정의
-EPISODES = 50
+EPISODES = 200
 
 EPS_START = 0.9
 EPS_END = 0.05
-EPS_DECAY = 200
+# EPS_DECAY = 200
+EPS_DECAY = 0.999
 
 GAMMA = 0.8
 
@@ -36,7 +37,7 @@ class DQNAgent:
 
     self.optimizer = optim.Adam(self.model.parameters(), LR)
     self.steps_done = 0 
-    self.memory = deque(maxlen = 10000)
+    self.memory = deque(maxlen = 50000)
 
   def memorize(self, state, action, reward, next_state):
 
@@ -91,7 +92,7 @@ for e in range(1, EPISODES + 1):
     next_state, reward, done, _ = env.step(action.item())
 
     if done:
-      reward = -1
+      reward = -100
     agent.memorize(state, action, reward, next_state) 
     agent.learn()
     state = next_state
@@ -99,7 +100,7 @@ for e in range(1, EPISODES + 1):
 
     if done:
       print("Eposide:{0} Score: {1}".format(e, steps))
-      score_history.append(steps) 
+      score_history.append(steps)
       break
 
 torch.save(agent.model, 'model.pt')
